@@ -53,3 +53,7 @@ class Search:
         self.area1_search_effectiveness_probability = 0
         self.area2_search_effectiveness_probability = 0
         self.area3_search_effectiveness_probability = 0
+
+    def draw_map(self, last_known) -> None:
+        cv.line(self.img, (20,370), (70, 370), (0, 0, 0), 2)
+        cv.putText
