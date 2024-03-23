@@ -1,3 +1,7 @@
+"""
+Next section: Drawing the map
+"""
+
 import sys
 import random
 import itertools
@@ -5,7 +9,7 @@ import numpy as np
 import cv2 as cv
 
 # TODO: fix after checking that the error works.
-MAP_FILE: str = '<remove_me>cape_python.png'
+MAP_FILE_NAME = '<remove_me>cape_python.png'
 
 # (UL-X, UL-Y, LR-X, LR-Y)
 SEARCH_AREA1_CORNERS = (130, 265, 180, 315)
@@ -19,9 +23,9 @@ class Search:
     def __init__(self, name: str) -> None:
         self.name = name
 
-        self.img = cv.imread(filename=MAP_FILE, flags=cv.IMREAD_COLOR)
+        self.img = cv.imread(filename=MAP_FILE_NAME, flags=cv.IMREAD_COLOR)
         if self.img is None:
-            print(f"Could not read map file {MAP_FILE}", file=sys.stderr)
+            print(f"Could not read map file {MAP_FILE_NAME}", file=sys.stderr)
             sys.exit(1)
 
         # The sailor's actual location.
@@ -30,16 +34,16 @@ class Search:
 
         # Create numpy arrays for each search area by indexing image array.
         self.search_area1 = self.img[
-                            SEARCH_AREA1_CORNERS[1] : SEARCH_AREA1_CORNERS[3],
-                            SEARCH_AREA1_CORNERS[0] : SEARCH_AREA1_CORNERS[2]]
+                            SEARCH_AREA1_CORNERS[1]: SEARCH_AREA1_CORNERS[3],
+                            SEARCH_AREA1_CORNERS[0]: SEARCH_AREA1_CORNERS[2]]
 
         self.search_area2 = self.img[
-                            SEARCH_AREA2_CORNERS[1] : SEARCH_AREA2_CORNERS[3],
-                            SEARCH_AREA2_CORNERS[0] : SEARCH_AREA2_CORNERS[2]]
+                            SEARCH_AREA2_CORNERS[1]: SEARCH_AREA2_CORNERS[3],
+                            SEARCH_AREA2_CORNERS[0]: SEARCH_AREA2_CORNERS[2]]
 
         self.search_area3 = self.img[
-                            SEARCH_AREA3_CORNERS[1] : SEARCH_AREA3_CORNERS[3],
-                            SEARCH_AREA3_CORNERS[0] : SEARCH_AREA3_CORNERS[2]]
+                            SEARCH_AREA3_CORNERS[1]: SEARCH_AREA3_CORNERS[3],
+                            SEARCH_AREA3_CORNERS[0]: SEARCH_AREA3_CORNERS[2]]
 
         # Per-area target probabilities for finding sailor.
         self.area1_probability = 0.2
